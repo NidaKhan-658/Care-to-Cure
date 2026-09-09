@@ -1,0 +1,1238 @@
+# FUNCTIONAL REQUIREMENTS DOCUMENT (FRD)
+
+## Care to Cure Patient Retention & Follow-up Management System
+
+**Organization:** Care to Cure
+**Country:** Philippines
+**Document Type:** Functional Requirements Document
+**Version:** 1.0
+**Status:** Draft
+**Prepared By:** Business Analyst
+
+---
+
+# 1. Document Purpose
+
+The purpose of this Functional Requirements Document (FRD) is to define the functional requirements for the proposed **Care to Cure Patient Retention & Follow-up Management System**.
+
+The system will support the management and tracking of the patient journey from appointment booking through consultation, procedures, follow-ups, feedback, and retention analysis.
+
+The system is intended to provide Care to Cure with better visibility into:
+
+* Appointment attendance
+* No-shows
+* Cancellations
+* Rescheduling
+* Procedure completion
+* Follow-up compliance
+* Patient feedback
+* Patient drop-offs
+* Doctor performance
+* Department performance
+* Patient retention
+
+**Billing, payment processing, insurance claims, and financial management are outside the scope of this system.**
+
+---
+
+# 2. Project Objectives
+
+The system shall enable Care to Cure to:
+
+1. Centralize patient appointment information.
+2. Track appointment status throughout its lifecycle.
+3. Capture cancellation and no-show reasons.
+4. Track rescheduled appointments.
+5. Track consultation outcomes.
+6. Track recommended procedures.
+7. Track procedure completion and non-completion.
+8. Track required follow-up appointments.
+9. Monitor follow-up attendance.
+10. Capture patient feedback.
+11. Calculate patient retention and drop-off metrics.
+12. Provide doctor and department performance metrics.
+13. Provide management dashboards.
+14. Identify recurring patient drop-off patterns.
+
+---
+
+# 3. Scope
+
+## 3.1 In Scope
+
+The system will include the following modules:
+
+* Patient Management
+* Department Management
+* Doctor Management
+* Appointment Management
+* Appointment Confirmation & Reminder Tracking
+* No-show and Cancellation Management
+* Rescheduling
+* Consultation Tracking
+* Procedure Management
+* Follow-up Management
+* Patient Feedback
+* Retention & Drop-off Analytics
+* Doctor Performance Analytics
+* Department Performance Analytics
+* Management Dashboard
+
+---
+
+## 3.2 Out of Scope
+
+The following functions are excluded:
+
+* Billing
+* Invoicing
+* Payment processing
+* Insurance claims
+* Accounts receivable
+* Revenue management
+* Financial reporting
+* Payroll
+* Pharmacy management
+* Inventory management
+
+---
+
+# 4. User Roles
+
+| Role                    | Description                                                    |
+| ----------------------- | -------------------------------------------------------------- |
+| Hospital Administrator  | Manages overall system configuration and access                |
+| Front Desk Staff        | Manages patients, appointments, confirmations and attendance   |
+| Doctor                  | Manages consultation, procedure recommendations and follow-ups |
+| Department Head         | Reviews department-level performance                           |
+| Patient Experience Team | Reviews feedback and patient experience                        |
+| Hospital Management     | Reviews dashboards and KPIs                                    |
+| IT Administrator        | Manages technical configuration and users                      |
+| Business Analyst        | Defines requirements and analyzes business processes           |
+| BI/Analytics User       | Creates and reviews analytical reports                         |
+
+---
+
+# 5. Functional Requirements
+
+## 5.1 Patient Management
+
+### FR-001 — Create Patient Record
+
+The system shall allow authorized users to create a patient record.
+
+The patient record shall contain relevant information such as:
+
+* Patient ID
+* Patient name
+* Date of birth
+* Gender
+* Contact information
+* Preferred communication method
+* Registration date
+
+The system shall generate a unique Patient ID.
+
+**Priority:** High
+
+---
+
+### FR-002 — Search Patient
+
+The system shall allow authorized users to search for patients using:
+
+* Patient ID
+* Patient name
+* Contact information
+
+**Priority:** High
+
+---
+
+### FR-003 — View Patient Journey
+
+The system shall allow authorized users to view a patient's relevant journey information in a consolidated view.
+
+The view should include:
+
+**Appointments → Consultations → Procedures → Follow-ups → Feedback**
+
+**Priority:** High
+
+---
+
+# 6. Department Management
+
+### FR-004 — Maintain Departments
+
+The system shall maintain hospital departments.
+
+Initial departments include:
+
+* General Medicine
+* Cardiology
+* Orthopedics
+* Pediatrics
+* Obstetrics & Gynecology
+* Dermatology
+* ENT
+* Ophthalmology
+* Neurology
+* Gastroenterology
+* Pulmonology
+* Dental
+* Physiotherapy
+* General Surgery
+* Emergency
+
+Emergency encounters shall be separately identified for analytics because emergency care does not follow the same appointment behavior as scheduled outpatient visits.
+
+**Priority:** High
+
+---
+
+# 7. Doctor Management
+
+### FR-005 — Create Doctor Profile
+
+The system shall allow authorized users to create and maintain doctor profiles.
+
+Information may include:
+
+* Doctor ID
+* Doctor name
+* Department
+* Specialty
+* Availability status
+
+**Priority:** High
+
+---
+
+### FR-006 — Assign Doctor to Appointment
+
+The system shall allow a doctor to be assigned to an appointment.
+
+**Priority:** High
+
+---
+
+# 8. Appointment Management
+
+### FR-007 — Create Appointment
+
+The system shall allow authorized users to create an appointment.
+
+Required information shall include:
+
+* Appointment ID
+* Patient ID
+* Doctor
+* Department
+* Appointment date
+* Appointment time
+* Appointment type
+* Booking channel
+* Appointment status
+
+**Priority:** High
+
+---
+
+### FR-008 — Appointment Status
+
+The system shall support the following appointment statuses:
+
+* Requested
+* Scheduled
+* Confirmed
+* Rescheduled
+* Cancelled
+* No-show
+* Completed
+
+**Priority:** High
+
+---
+
+### FR-009 — Update Appointment
+
+Authorized users shall be able to update appointment information before the appointment occurs.
+
+The system shall maintain relevant changes to appointment status.
+
+**Priority:** High
+
+---
+
+# 9. Appointment Confirmation
+
+### FR-010 — Record Appointment Confirmation
+
+The system shall record whether the patient has confirmed the appointment.
+
+Possible values:
+
+* Confirmed
+* Pending
+* Unable to Confirm
+
+The system shall store the confirmation date/time where applicable.
+
+**Priority:** High
+
+---
+
+# 10. Appointment Reminder
+
+### FR-011 — Generate Appointment Reminder
+
+The system shall support appointment reminder functionality before the scheduled appointment.
+
+Reminder information shall include:
+
+* Patient
+* Appointment
+* Reminder date/time
+* Communication channel
+* Reminder status
+
+**Priority:** High
+
+---
+
+### FR-012 — Track Reminder Status
+
+The system shall track whether the reminder was:
+
+* Sent
+* Delivered
+* Failed
+* Responded to, where supported
+
+**Priority:** Medium
+
+---
+
+# 11. Cancellation Management
+
+### FR-013 — Cancel Appointment
+
+Authorized users shall be able to cancel an appointment.
+
+The system shall require or provide a cancellation reason.
+
+**Priority:** High
+
+---
+
+### FR-014 — Capture Cancellation Reason
+
+The system shall support standardized cancellation reasons, including:
+
+* Forgot appointment
+* Transportation problem
+* Scheduling conflict
+* Personal reason
+* Patient feeling better
+* Doctor unavailable
+* Long waiting time
+* Communication issue
+* Other
+
+**Priority:** High
+
+---
+
+# 12. No-show Management
+
+### FR-015 — Record No-show
+
+Authorized users shall be able to mark an appointment as a no-show.
+
+**Priority:** High
+
+---
+
+### FR-016 — Capture No-show Reason
+
+The system shall allow staff to record the reason for a no-show where available.
+
+**Priority:** High
+
+---
+
+### FR-017 — No-show Follow-up
+
+The system should identify no-show appointments requiring follow-up or rescheduling.
+
+**Priority:** Medium
+
+---
+
+# 13. Rescheduling
+
+### FR-018 — Reschedule Appointment
+
+Authorized users shall be able to reschedule an appointment.
+
+The system shall create or update the new appointment while maintaining a relationship with the original appointment.
+
+**Priority:** High
+
+---
+
+### FR-019 — Track Rescheduling History
+
+The system shall maintain the history of appointment rescheduling.
+
+The history should include:
+
+* Original appointment
+* New appointment
+* Rescheduling date
+* Reason, where available
+
+**Priority:** High
+
+---
+
+# 14. Consultation Management
+
+### FR-020 — Record Consultation
+
+The doctor shall be able to record that the consultation has been completed.
+
+The consultation shall be linked to:
+
+* Patient
+* Appointment
+* Doctor
+* Department
+
+**Priority:** High
+
+---
+
+### FR-021 — Record Consultation Outcome
+
+The system shall support consultation outcomes such as:
+
+* No further action
+* Follow-up required
+* Procedure recommended
+* Referral required
+
+**Priority:** High
+
+---
+
+# 15. Procedure Management
+
+### FR-022 — Record Procedure Recommendation
+
+The doctor or authorized user shall be able to record a recommended procedure.
+
+The system shall capture:
+
+* Procedure ID
+* Patient ID
+* Doctor
+* Department
+* Procedure type
+* Recommendation date
+* Recommended date
+* Patient decision
+
+**Priority:** High
+
+---
+
+### FR-023 — Record Patient Procedure Decision
+
+The system shall support:
+
+* Accepted
+* Declined
+* Deferred
+* Needs more information
+
+**Priority:** High
+
+---
+
+### FR-024 — Schedule Procedure
+
+Authorized users shall be able to schedule an accepted procedure.
+
+**Priority:** High
+
+---
+
+### FR-025 — Procedure Status
+
+The system shall support:
+
+* Recommended
+* Scheduled
+* Confirmed
+* Completed
+* Cancelled
+* No-show
+* Declined
+* Deferred
+
+**Priority:** High
+
+---
+
+### FR-026 — Capture Procedure Non-completion Reason
+
+If a procedure is not completed, the system shall allow the user to record the reason.
+
+Possible reasons include:
+
+* Patient declined
+* Patient postponed
+* Scheduling conflict
+* Transportation issue
+* Communication issue
+* Patient unavailable
+* Other
+
+**Priority:** High
+
+---
+
+# 16. Follow-up Management
+
+### FR-027 — Record Follow-up Requirement
+
+The system shall allow the doctor to indicate whether follow-up is required.
+
+**Priority:** High
+
+---
+
+### FR-028 — Create Follow-up Appointment
+
+Authorized users shall be able to create a follow-up appointment.
+
+The follow-up shall be linked to the relevant patient and previous care event.
+
+**Priority:** High
+
+---
+
+### FR-029 — Track Follow-up Status
+
+The system shall support:
+
+* Required
+* Scheduled
+* Confirmed
+* Completed
+* Cancelled
+* No-show
+* Rescheduled
+
+**Priority:** High
+
+---
+
+### FR-030 — Track Follow-up Attendance
+
+The system shall record whether the patient attended the required follow-up.
+
+**Priority:** High
+
+---
+
+### FR-031 — Capture Follow-up Non-attendance Reason
+
+The system shall allow users to record cancellation/no-show reasons for follow-up appointments.
+
+**Priority:** Medium
+
+---
+
+# 17. Patient Feedback
+
+### FR-032 — Capture Patient Feedback
+
+The system shall allow patient feedback to be recorded.
+
+Feedback fields may include:
+
+* Overall satisfaction
+* Doctor rating
+* Staff rating
+* Waiting-time experience
+* Appointment experience
+* Communication experience
+* Comments
+* Complaint/issue category
+
+**Priority:** Medium
+
+---
+
+### FR-033 — Link Feedback to Patient Journey
+
+Where possible, feedback shall be linked to the relevant:
+
+* Appointment
+* Procedure
+* Follow-up
+
+**Priority:** Medium
+
+---
+
+# 18. Retention & Drop-off Management
+
+### FR-034 — Identify Appointment Drop-offs
+
+The system shall identify patients who:
+
+* Cancel appointments
+* Miss appointments
+* Repeatedly reschedule
+
+**Priority:** High
+
+---
+
+### FR-035 — Identify Procedure Drop-offs
+
+The system shall identify patients who receive procedure recommendations but do not complete them.
+
+**Priority:** High
+
+---
+
+### FR-036 — Identify Follow-up Drop-offs
+
+The system shall identify patients who require follow-up but:
+
+* Do not schedule it
+* Cancel it
+* Miss it
+* Do not return
+
+**Priority:** High
+
+---
+
+### FR-037 — Identify Repeat Drop-off Patients
+
+The system should identify patients with repeated drop-off events.
+
+Example:
+
+**No-show → Rescheduled → No-show → Follow-up missed**
+
+**Priority:** High
+
+---
+
+# 19. KPI Calculation
+
+### FR-038 — Attendance Rate
+
+The system shall calculate:
+
+**Attendance Rate = Completed Appointments ÷ Scheduled Appointments × 100**
+
+---
+
+### FR-039 — No-show Rate
+
+The system shall calculate:
+
+**No-show Rate = No-show Appointments ÷ Scheduled Appointments × 100**
+
+---
+
+### FR-040 — Cancellation Rate
+
+The system shall calculate:
+
+**Cancellation Rate = Cancelled Appointments ÷ Scheduled Appointments × 100**
+
+---
+
+### FR-041 — Procedure Completion Rate
+
+The system shall calculate procedure completion using an agreed denominator, such as recommended or scheduled procedures.
+
+**Procedure Completion Rate = Completed Procedures ÷ Applicable Procedure Population × 100**
+
+The final denominator must be agreed with business stakeholders.
+
+---
+
+### FR-042 — Follow-up Compliance
+
+The system shall calculate:
+
+**Follow-up Compliance = Completed Follow-ups ÷ Required Follow-ups × 100**
+
+---
+
+### FR-043 — Patient Retention Rate
+
+The system shall calculate patient retention based on an agreed measurement window.
+
+Example:
+
+**Returning Patients within defined window ÷ Eligible Patients × 100**
+
+The business must confirm whether the standard window will be **90 days, 180 days, or another agreed period.**
+
+**Priority:** High
+
+---
+
+# 20. Doctor Performance
+
+### FR-044 — Doctor Performance Metrics
+
+The system shall provide doctor-level metrics including:
+
+* Appointment volume
+* Attendance rate
+* No-show rate
+* Cancellation rate
+* Patient satisfaction
+* Procedure completion
+* Follow-up compliance
+
+**Priority:** Medium
+
+---
+
+# 21. Department Performance
+
+### FR-045 — Department Performance Metrics
+
+The system shall provide department-level metrics including:
+
+* Appointment volume
+* Attendance rate
+* No-show rate
+* Cancellation rate
+* Procedure completion
+* Follow-up compliance
+* Patient satisfaction
+* Retention rate
+
+**Priority:** High
+
+---
+
+# 22. Dashboard & Reporting
+
+### FR-046 — Management Dashboard
+
+The system shall provide a management dashboard containing key patient journey KPIs.
+
+The dashboard should display:
+
+* Total appointments
+* Attendance rate
+* No-show rate
+* Cancellation rate
+* Procedure completion rate
+* Follow-up compliance
+* Retention rate
+* Patient satisfaction
+
+**Priority:** High
+
+---
+
+### FR-047 — Dashboard Filters
+
+Users shall be able to filter dashboard information by:
+
+* Date
+* Department
+* Doctor
+* Appointment type
+* Patient segment
+* Appointment status
+
+**Priority:** High
+
+---
+
+### FR-048 — Drop-off Dashboard
+
+The dashboard shall provide visibility into drop-offs at:
+
+1. Appointment attendance
+2. Procedure completion
+3. Follow-up attendance
+4. Future/return care
+
+**Priority:** High
+
+---
+
+# 23. Reporting Requirements
+
+The system should support the following reports.
+
+### Report 1 — Appointment Report
+
+Fields:
+
+* Appointment ID
+* Patient ID
+* Department
+* Doctor
+* Appointment date
+* Appointment type
+* Status
+* Cancellation/no-show reason
+
+---
+
+### Report 2 — Procedure Report
+
+Fields:
+
+* Patient ID
+* Doctor
+* Department
+* Procedure
+* Recommendation date
+* Scheduled date
+* Status
+* Non-completion reason
+
+---
+
+### Report 3 — Follow-up Report
+
+Fields:
+
+* Patient ID
+* Doctor
+* Department
+* Follow-up type
+* Required date
+* Scheduled date
+* Attendance status
+* Reason for non-attendance
+
+---
+
+### Report 4 — Patient Retention Report
+
+Fields:
+
+* Patient ID
+* First visit date
+* Last visit date
+* Number of visits
+* No-show count
+* Cancellation count
+* Procedure status
+* Follow-up status
+* Retention status
+
+---
+
+# 24. Business Rules
+
+### BR-001
+
+Every appointment must be associated with a valid patient.
+
+### BR-002
+
+Every appointment must have a doctor and department unless the appointment type/business process explicitly allows otherwise.
+
+### BR-003
+
+An appointment cannot be marked as completed unless attendance has been recorded.
+
+### BR-004
+
+A cancelled appointment should have a cancellation reason where available.
+
+### BR-005
+
+A no-show appointment should have a no-show reason where available.
+
+### BR-006
+
+A rescheduled appointment must maintain traceability to the original appointment.
+
+### BR-007
+
+A procedure recommendation must be associated with a consultation or relevant care event.
+
+### BR-008
+
+A completed procedure must have a valid procedure record.
+
+### BR-009
+
+A follow-up marked as completed must have an associated follow-up appointment/event.
+
+### BR-010
+
+Emergency encounters must be separately identified from scheduled outpatient appointments.
+
+### BR-011
+
+Retention calculations must use an approved business definition and measurement window.
+
+### BR-012
+
+Doctor and department performance metrics must use standardized KPI definitions.
+
+---
+
+# 25. Functional Workflow
+
+## Appointment Workflow
+
+**Request**
+
+↓
+
+**Scheduled**
+
+↓
+
+**Confirmed**
+
+↓
+
+**Reminder**
+
+↓
+
+**Attended?**
+
+### Yes
+
+**Consultation**
+
+### No
+
+**Cancelled / No-show**
+
+↓
+
+**Reason Captured**
+
+↓
+
+**Reschedule / Follow-up**
+
+---
+
+## Procedure Workflow
+
+**Procedure Recommended**
+
+↓
+
+**Patient Decision**
+
+↓
+
+**Accepted?**
+
+### Yes
+
+**Scheduled**
+
+↓
+
+**Confirmed**
+
+↓
+
+**Attended?**
+
+↓
+
+**Completed**
+
+### No
+
+**Declined / Deferred**
+
+or
+
+**Cancelled / No-show**
+
+---
+
+## Follow-up Workflow
+
+**Follow-up Required**
+
+↓
+
+**Scheduled**
+
+↓
+
+**Confirmed**
+
+↓
+
+**Reminder**
+
+↓
+
+**Attended?**
+
+### Yes
+
+**Follow-up Completed**
+
+### No
+
+**Cancelled / No-show**
+
+↓
+
+**Reschedule / Patient Drop-off**
+
+---
+
+# 26. Non-Functional Requirements
+
+Although this document primarily focuses on functional requirements, the following non-functional requirements should be considered.
+
+## NFR-001 — Security
+
+Only authorized users shall be able to access patient information.
+
+## NFR-002 — Role-based Access
+
+Users shall only access functions appropriate to their role.
+
+## NFR-003 — Auditability
+
+Important changes to patient, appointment, procedure, and follow-up information should be auditable.
+
+## NFR-004 — Performance
+
+Common system operations should respond within an acceptable time defined during technical design.
+
+## NFR-005 — Availability
+
+The system should be available during agreed hospital operating hours and required support periods.
+
+## NFR-006 — Data Privacy
+
+The system must comply with applicable healthcare data protection and privacy requirements.
+
+For portfolio development and demonstration, only **synthetic/de-identified patient data** should be used.
+
+---
+
+# 27. Data Entities
+
+The initial logical data model should contain the following entities:
+
+1. Patient
+2. Doctor
+3. Department
+4. Appointment
+5. Appointment Reminder
+6. Consultation
+7. Procedure
+8. Follow-up
+9. Feedback
+10. Cancellation/No-show Reason
+11. User
+12. Audit Log
+
+Relationships include:
+
+**Patient → Appointments**
+
+**Doctor → Appointments**
+
+**Department → Doctors**
+
+**Appointment → Consultation**
+
+**Consultation → Procedure**
+
+**Patient → Procedures**
+
+**Procedure → Follow-up**
+
+**Patient → Follow-ups**
+
+**Appointment → Feedback**
+
+**Procedure → Feedback**
+
+**Follow-up → Feedback**
+
+---
+
+# 28. Requirements Traceability
+
+The following provides an initial connection between business requirements and functional requirements.
+
+| Business Requirement                        | Related Functional Requirements |
+| ------------------------------------------- | ------------------------------- |
+| BR-001 Track appointments                   | FR-007 to FR-009                |
+| BR-002 Identify no-shows                    | FR-015 to FR-017                |
+| BR-003 Capture cancellation/no-show reasons | FR-014, FR-016                  |
+| BR-004 Track rescheduling                   | FR-018, FR-019                  |
+| BR-005 Track procedures                     | FR-022 to FR-025                |
+| BR-006 Track procedure non-completion       | FR-026                          |
+| BR-007 Track follow-ups                     | FR-027 to FR-031                |
+| BR-008 Capture feedback                     | FR-032, FR-033                  |
+| BR-009 Doctor performance                   | FR-044                          |
+| BR-010 Department performance               | FR-045                          |
+| BR-011 Retention KPIs                       | FR-043                          |
+| BR-012 Identify drop-offs                   | FR-034 to FR-037                |
+| BR-013 Management dashboard                 | FR-046 to FR-048                |
+| BR-014 Dashboard filtering                  | FR-047                          |
+
+---
+
+# 29. Assumptions
+
+1. Care to Cure will provide authorized users to manage patient and appointment information.
+2. Doctors will provide consultation, procedure, and follow-up information.
+3. Standardized reason categories will be approved by business stakeholders.
+4. The hospital will define the final retention measurement window.
+5. Emergency encounters will be separately identified.
+6. Dashboard requirements will be finalized before Power BI/Tableau development.
+7. The project will use synthetic data for portfolio purposes.
+
+---
+
+# 30. Dependencies
+
+The successful implementation of the system depends on:
+
+* Stakeholder approval of requirements
+* Finalization of business rules
+* Standardization of reason codes
+* Agreement on KPI definitions
+* Agreement on retention measurement period
+* Availability of patient and appointment data
+* Technical architecture
+* User access and security design
+* Power BI/Tableau reporting requirements
+
+---
+
+# 31. Acceptance Criteria — High-Level
+
+The system will be considered functionally acceptable when:
+
+1. Users can create and manage patient records.
+2. Users can create and update appointments.
+3. Appointment statuses are tracked.
+4. Cancellations and no-shows can be recorded.
+5. Cancellation/no-show reasons can be captured.
+6. Appointments can be rescheduled with traceability.
+7. Consultations can be linked to appointments.
+8. Procedures can be recommended and tracked.
+9. Procedure completion/non-completion can be recorded.
+10. Follow-ups can be created and tracked.
+11. Patient feedback can be captured.
+12. Drop-off points can be identified.
+13. Retention KPIs can be calculated.
+14. Doctor and department metrics can be generated.
+15. Management dashboards can display the agreed KPIs.
+16. Dashboard information can be filtered by agreed dimensions.
+
+---
+
+# 32. Future Reporting & Analytics
+
+The functional system will provide the data foundation for subsequent analytics work using:
+
+* SQL
+* Power BI
+* Tableau
+
+The analytics layer will answer business questions such as:
+
+**Which department has the highest no-show rate?**
+
+**Why are patients cancelling appointments?**
+
+**Which procedures have the highest drop-off?**
+
+**How many patients miss required follow-ups?**
+
+**Does waiting-time satisfaction correlate with patient retention?**
+
+**Which patient segments have repeated drop-off behavior?**
+
+**Which departments require process improvement?**
+
+---
+
+# 33. FRD Summary
+
+The proposed Care to Cure Patient Retention & Follow-up Management System will transform the patient journey from fragmented operational tracking into a structured, measurable process.
+
+The core functional journey will be:
+
+**Patient**
+
+↓
+
+**Appointment**
+
+↓
+
+**Confirmation & Reminder**
+
+↓
+
+**Attendance**
+
+↓
+
+**Consultation**
+
+↓
+
+**Procedure**
+
+↓
+
+**Follow-up**
+
+↓
+
+**Feedback**
+
+↓
+
+**Retention / Drop-off Analysis**
+
+The system will capture the status and relevant reasons at each major stage, enabling Care to Cure to move from simply recording patient activity to understanding **patient behavior, drop-off causes, and opportunities for process improvement.**
+
+---
+
+## Document Status
+
+**Document:** Functional Requirements Document
+**Project:** Care to Cure Patient Retention & Follow-up Management System
+**Version:** 1.0
+**Status:** Draft
+**Previous Documents:** BRD, AS-IS Process, TO-BE Process
+**Next BA Deliverables:** User Stories → Acceptance Criteria → RTM → Jira Backlog
