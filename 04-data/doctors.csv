@@ -1,0 +1,8 @@
+doctor_id,name,department_id,specialty,availability_status
+1,Dr. Ana Reyes,1,Internal Medicine,Available
+2,Dr. Miguel Santos,2,Cardiology,Available
+3,Dr. Liza Cruz,3,Orthopedic Surgery,Available
+4,Dr. Carlos Bautista,4,Pediatrics,Available
+5,Dr. Grace Tan,5,Dermatology,Available
+6,Dr. Paolo Garcia,6,ENT,Unavailable
+7,Dr. Ramon Dela Cruz,7,Emergency Medicine,Available

@@ -1,0 +1,11 @@
+feedback_id,patient_id,appointment_id,procedure_id,follow_up_id,satisfaction_score,doctor_rating,staff_rating,waiting_time_experience,appointment_experience,communication_experience,comments,complaint_category,submitted_date
+1,1,1,,,5,5,4,Short wait,Very good,Clear communication,Great visit overall,,2025-02-02
+2,2,2,,,4,4,4,Moderate wait,Good,Clear,Satisfied with care,,2025-02-03
+3,4,4,,,3,3,3,Long wait,Average,Average,Waited too long,Long Wait Time,2025-02-05
+4,7,7,,,5,5,5,Short wait,Excellent,Excellent,Very happy,,2025-02-08
+5,9,9,,,4,4,4,Moderate wait,Good,Good,,,2025-02-10
+6,11,11,,,5,5,4,Short wait,Very good,Good,,,2025-02-12
+7,2,,1,,5,5,5,Short wait,Excellent,Excellent,Procedure went smoothly,,2025-03-02
+8,9,,3,,4,4,4,Moderate wait,Good,Good,,,2025-03-12
+9,4,,,5,2,3,2,Long wait,Poor,Poor,Missed follow-up reminder,Communication Issue,2025-03-05
+10,13,14,,,4,4,3,Moderate wait,Good,Average,,,2025-02-21

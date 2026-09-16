@@ -1,0 +1,8 @@
+follow_up_id,patient_id,doctor_id,department_id,source_type,source_id,required_date,scheduled_date,status,attendance_status,non_attendance_reason
+1,1,1,1,Consultation,1,2025-03-01,2025-03-01,Completed,Attended,
+2,14,3,3,Consultation,8,2025-03-20,2025-03-20,Completed,Attended,
+3,2,2,2,Procedure,1,2025-03-02,2025-03-02,Completed,Attended,
+4,9,4,4,Procedure,3,2025-03-12,2025-03-12,Completed,Attended,
+5,4,4,4,Consultation,3,2025-03-05,,No-show,Not Attended,Long waiting time
+6,7,2,2,Procedure,2,2025-03-10,,Cancelled,Not Attended,Patient feeling better
+7,13,2,2,Consultation,7,2025-03-25,,Required,,

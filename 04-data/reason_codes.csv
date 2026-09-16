@@ -1,0 +1,22 @@
+reason_code_id,reason_text,applies_to
+1,Forgot appointment,Cancellation
+2,Transportation problem,Cancellation
+3,Scheduling conflict,Cancellation
+4,Personal reason,Cancellation
+5,Patient feeling better,Cancellation
+6,Doctor unavailable,Cancellation
+7,Long waiting time,Cancellation
+8,Communication issue,Cancellation
+9,Other,Cancellation
+10,Forgot appointment,No-show
+11,Transportation problem,No-show
+12,Communication issue,No-show
+13,Long waiting time,No-show
+14,Other,No-show
+15,Patient declined,Procedure Non-completion
+16,Patient postponed,Procedure Non-completion
+17,Scheduling conflict,Procedure Non-completion
+18,Transportation issue,Procedure Non-completion
+19,Communication issue,Procedure Non-completion
+20,Patient unavailable,Procedure Non-completion
+21,Other,Procedure Non-completion

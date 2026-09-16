@@ -1,0 +1,7 @@
+procedure_id,patient_id,doctor_id,department_id,consultation_id,procedure_type,recommendation_date,scheduled_date,patient_decision,status,non_completion_reason
+1,2,2,2,2,Angioplasty Consult,2025-02-02,2025-02-16,Accepted,Completed,
+2,7,2,2,4,Cardiac Stress Test,2025-02-07,2025-02-21,Accepted,Cancelled,Patient postponed
+3,9,4,4,5,Minor Skin Procedure,2025-02-09,2025-02-23,Accepted,Completed,
+4,13,2,2,7,Echocardiogram,2025-02-20,,Declined,Declined,
+5,3,3,3,9,Joint Injection,2025-02-25,,Deferred,Deferred,
+6,5,5,5,10,Skin Biopsy,2025-02-26,,Needs more information,Recommended,
