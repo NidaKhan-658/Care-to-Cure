@@ -1,0 +1,61 @@
+# SPRINT REVIEW & RETROSPECTIVE NOTES
+## Care to Cure Patient Retention & Follow-up Management System
+
+*(Simulated sprint reviews for portfolio demonstration purposes.)*
+
+---
+
+## Sprint 0 Review
+
+**Demoed:** BRD, FRD, backlog, MoSCoW prioritization, compliance requirements, success metrics.
+
+**Went well:**
+- FRD and BRD stayed tightly aligned via the traceability table, making backlog creation straightforward.
+- MoSCoW prioritization mapped cleanly onto the patient journey stages (appointment → procedure → follow-up → retention).
+
+**Could improve:**
+- BR-xxx numbering was reused for two different concepts (Business Rules in FRD Section 24 vs. Business Requirements in the traceability table) — flagged for cleanup to avoid confusion in later phases.
+- Retention measurement window (90 vs. 180 days) still needs a stakeholder decision before KPI calculations can be finalized.
+
+**Action items:**
+- Rename FRD Section 24 items to SR-xxx (System Rules) to resolve the ID collision.
+- Confirm retention window with "Hospital Management" stakeholder persona before Sprint 3.
+
+---
+
+## Sprint 1 Review (Planned)
+
+**Goal recap:** Patient records and full appointment lifecycle.
+
+**Anticipated risks:**
+- Ensuring cancellation/no-show reason codes stay standardized (not free text) so they roll up cleanly into analytics later.
+- Reschedule traceability (linking new appointment to original) needs to be modeled correctly in the schema from the start — retrofitting this later would be costly.
+
+---
+
+## Sprint 2 Review (Planned)
+
+**Goal recap:** Consultation, procedure, and follow-up tracking; consolidated patient journey view.
+
+**Anticipated risks:**
+- Procedure and follow-up both need clear "non-completion reason" capture — consistent reason categories should be reused across appointments, procedures, and follow-ups where possible to simplify drop-off analysis (Epic 6).
+
+---
+
+## Sprint 3 Review (Planned)
+
+**Goal recap:** Retention KPIs and dashboard.
+
+**Anticipated risks:**
+- KPI denominators (e.g., "Applicable Procedure Population" for Procedure Completion Rate) must be explicitly agreed upon — the FRD itself flags this as still open (FR-041).
+- Dashboard filters (date, department, doctor, status) need to be validated against actual query performance once real data volume is simulated.
+
+---
+
+## Retrospective Themes (Running)
+
+| Theme | Notes |
+|---|---|
+| Traceability discipline | Keeping every story, KPI, and dashboard element traceable back to an FR paid off early — recommend maintaining this through backend/frontend build. |
+| Ambiguous business rules | Several open questions (retention window, KPI denominators) were identified early via the FRD's own "must be agreed with stakeholders" notes — good practice to resolve these before backend work starts, not during. |
+| Scope discipline | Explicitly listing Won't Have items (billing, insurance, pharmacy) early prevented scope creep discussions later. |

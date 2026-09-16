@@ -1,0 +1,65 @@
+# SUCCESS METRICS
+## Care to Cure Patient Retention & Follow-up Management System
+
+---
+
+## 1. Purpose
+
+Defines the specific, measurable KPIs used to judge whether this system is achieving its intended outcomes. These metrics are calculated directly from FRD Section 19 (KPI Calculation).
+
+---
+
+## 2. Core KPIs
+
+| KPI | Formula | Target (Illustrative) | FRD Reference |
+|---|---|---|---|
+| Attendance Rate | Completed Appointments ÷ Scheduled Appointments × 100 | ≥ 85% | FR-038 |
+| No-show Rate | No-show Appointments ÷ Scheduled Appointments × 100 | ≤ 10% | FR-039 |
+| Cancellation Rate | Cancelled Appointments ÷ Scheduled Appointments × 100 | ≤ 15% | FR-040 |
+| Procedure Completion Rate | Completed Procedures ÷ Applicable Procedure Population × 100 | ≥ 75% | FR-041 |
+| Follow-up Compliance Rate | Completed Follow-ups ÷ Required Follow-ups × 100 | ≥ 80% | FR-042 |
+| Patient Retention Rate | Returning Patients (within measurement window) ÷ Eligible Patients × 100 | ≥ 70% (window TBD) | FR-043 |
+
+*Targets above are illustrative placeholders for portfolio purposes — in a real deployment these would be set by Care to Cure stakeholders based on historical baselines.*
+
+---
+
+## 3. Secondary / Diagnostic Metrics
+
+| Metric | Purpose |
+|---|---|
+| Top 5 cancellation/no-show reasons | Identifies the most common root causes of drop-off |
+| Repeat drop-off patient count | Flags patients with recurring disengagement patterns (FR-037) |
+| Department-level attendance/no-show/cancellation rates | Highlights departments needing process improvement |
+| Doctor-level performance metrics | Supports fair, standardized performance review (FR-044) |
+| Patient satisfaction score (average) | Tracks whether experience quality is improving alongside operational KPIs |
+
+---
+
+## 4. Success Criteria for the Portfolio Build
+
+Since this is a portfolio demonstration project using synthetic data, "success" is measured at two levels:
+
+**A. Functional Success** — the system correctly calculates all KPIs above from the underlying schema (validated via `03-analytics/retention_analysis.sql` and `05-database/queries.sql`).
+
+**B. Demonstration Success** — the KPIs and dashboards clearly tell a coherent story: given the synthetic dataset, a reviewer (e.g., a hiring manager) can see *where* patients drop off, *why* (reason codes), and *how* the numbers roll up into department/doctor performance and an overall retention rate.
+
+---
+
+## 5. Reporting Cadence (Illustrative)
+
+| Report | Frequency | Audience |
+|---|---|---|
+| Management Dashboard | Real-time / on-demand | Hospital Management |
+| Department Performance Report | Monthly | Department Heads |
+| Doctor Performance Report | Monthly or Quarterly | Department Heads, Doctors |
+| Drop-off Analysis | Weekly or Monthly | Hospital Management, Patient Experience Team |
+
+---
+
+## Document Status
+
+**Document:** Success Metrics
+**Project:** Care to Cure Patient Retention & Follow-up Management System
+**Version:** 1.0
+**Status:** Draft
