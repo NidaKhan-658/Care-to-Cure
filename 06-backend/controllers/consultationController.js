@@ -1,0 +1,1 @@
+module.exports = require('./genericController')('consultations', 'consultation_id');

@@ -1,0 +1,1 @@
+module.exports = require('./genericController')('feedback', 'feedback_id');

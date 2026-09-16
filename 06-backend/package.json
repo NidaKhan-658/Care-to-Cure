@@ -1,0 +1,16 @@
+{
+  "name": "care-to-cure-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Care to Cure Patient Retention & Follow-up Management System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "init-db": "node db/init.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "cors": "^2.8.5",
+    "csv-parse": "^5.5.6",
+    "express": "^4.19.2"
+  }
+}
