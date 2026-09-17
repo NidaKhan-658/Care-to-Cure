@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Care to Cure — Manage Records</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">Care to Cure</div>
+      <div class="brand-sub">Patient Retention System</div>
+      <nav>
+        <a href="index.html">Patient Journey</a>
+        <a href="dashboard.html">Management Dashboard</a>
+        <a href="manage.html" class="active">Manage Records</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="page-header">
+        <h1>Manage Records</h1>
+        <p>Create, edit, and remove patients and appointments directly. Changes here update the live database immediately.</p>
+      </div>
+
+      <div id="api-error" class="empty-state" style="display:none; margin-bottom: 24px; border-color: var(--alert); color: var(--alert);">
+        Could not reach the API. Make sure the backend is running (<code>npm start</code> in <code>06-backend</code>) on localhost:3000.
+      </div>
+
+      <div class="tabs">
+        <div class="tab active" data-tab="patients">Patients</div>
+        <div class="tab" data-tab="appointments">Appointments</div>
+      </div>
+
+      <!-- PATIENTS TAB -->
+      <div class="tab-panel active" id="tab-patients">
+        <div class="panel" style="margin-bottom: 24px;">
+          <div class="form-title" id="patientFormTitle">Add New Patient</div>
+          <form id="patientForm">
+            <input type="hidden" id="patient_id">
+            <div class="form-grid">
+              <div>
+                <label>Full Name</label>
+                <input type="text" id="p_name" required>
+              </div>
+              <div>
+                <label>Date of Birth</label>
+                <input type="date" id="p_dob">
+              </div>
+              <div>
+                <label>Gender</label>
+                <select id="p_gender">
+                  <option value="">Select</option>
+                  <option>Female</option>
+                  <option>Male</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label>Contact Info</label>
+                <input type="text" id="p_contact" placeholder="+639...">
+              </div>
+              <div>
+                <label>Preferred Communication</label>
+                <select id="p_comm">
+                  <option value="">Select</option>
+                  <option>SMS</option>
+                  <option>Email</option>
+                  <option>Call</option>
+                  <option>App</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn">Save Patient</button>
+              <button type="button" class="btn btn-secondary" id="patientCancelBtn">Clear</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Contact</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="patients-body">
+              <tr><td colspan="6">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- APPOINTMENTS TAB -->
+      <div class="tab-panel" id="tab-appointments">
+        <div class="panel" style="margin-bottom: 24px;">
+          <div class="form-title" id="appointmentFormTitle">Add New Appointment</div>
+          <form id="appointmentForm">
+            <input type="hidden" id="appointment_id">
+            <div class="form-grid">
+              <div>
+                <label>Patient</label>
+                <select id="a_patient" required></select>
+              </div>
+              <div>
+                <label>Doctor</label>
+                <select id="a_doctor" required></select>
+              </div>
+              <div>
+                <label>Department</label>
+                <select id="a_department" required></select>
+              </div>
+              <div>
+                <label>Date</label>
+                <input type="date" id="a_date" required>
+              </div>
+              <div>
+                <label>Time</label>
+                <input type="time" id="a_time">
+              </div>
+              <div>
+                <label>Appointment Type</label>
+                <input type="text" id="a_type" placeholder="e.g. New Consultation, Follow-up">
+              </div>
+              <div>
+                <label>Booking Channel</label>
+                <select id="a_channel">
+                  <option value="">Select</option>
+                  <option>Phone</option>
+                  <option>Walk-in</option>
+                  <option>App</option>
+                </select>
+              </div>
+              <div>
+                <label>Status</label>
+                <select id="a_status">
+                  <option>Requested</option>
+                  <option>Scheduled</option>
+                  <option>Confirmed</option>
+                  <option>Rescheduled</option>
+                  <option>Cancelled</option>
+                  <option>No-show</option>
+                  <option>Completed</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn">Save Appointment</button>
+              <button type="button" class="btn btn-secondary" id="appointmentCancelBtn">Clear</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Patient</th><th>Doctor</th><th>Date</th><th>Type</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="appointments-body">
+              <tr><td colspan="7">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/manage.js"></script>
+</body>
+</html>
