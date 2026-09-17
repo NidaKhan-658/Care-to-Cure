@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Care to Cure — Management Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">Care to Cure</div>
+      <div class="brand-sub">Patient Retention System</div>
+      <nav>
+        <a href="index.html">Patient Journey</a>
+        <a href="dashboard.html" class="active">Management Dashboard</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="page-header">
+        <h1>Management Dashboard</h1>
+        <p>Attendance, drop-off, and retention across the patient journey. Figures reflect the synthetic dataset loaded into the database.</p>
+      </div>
+
+      <div id="api-error" class="empty-state" style="display:none; margin-bottom: 24px; border-color: var(--alert); color: var(--alert);">
+        Could not reach the API. Make sure the backend is running (<code>npm start</code> in <code>06-backend</code>) on localhost:3000.
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat">
+          <div class="value" id="kpi-total">—</div>
+          <div class="label">Total Appointments</div>
+        </div>
+        <div class="stat">
+          <div class="value" id="kpi-attendance">—</div>
+          <div class="label">Attendance Rate</div>
+        </div>
+        <div class="stat stat-alert">
+          <div class="value" id="kpi-noshow">—</div>
+          <div class="label">No-show Rate</div>
+        </div>
+        <div class="stat stat-caution">
+          <div class="value" id="kpi-cancellation">—</div>
+          <div class="label">Cancellation Rate</div>
+        </div>
+        <div class="stat">
+          <div class="value" id="kpi-procedure">—</div>
+          <div class="label">Procedure Completion</div>
+        </div>
+        <div class="stat">
+          <div class="value" id="kpi-followup">—</div>
+          <div class="label">Follow-up Compliance</div>
+        </div>
+        <div class="stat">
+          <div class="value" id="kpi-retention">—</div>
+          <div class="label">Retention Rate (90d)</div>
+        </div>
+      </div>
+      <p id="retention-detail" style="color: var(--ink-soft); font-size: 0.85rem; margin-top: -20px; margin-bottom: 32px;"></p>
+
+      <div class="panel-grid">
+        <div class="section">
+          <h2>Department Performance</h2>
+          <div class="panel">
+            <table>
+              <thead>
+                <tr><th>Department</th><th>Appointments</th><th>Attendance</th><th>No-show</th><th>Cancellation</th></tr>
+              </thead>
+              <tbody id="dept-body">
+                <tr><td colspan="5">Loading…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Top Cancellation &amp; No-show Reasons</h2>
+          <div class="panel">
+            <table>
+              <thead>
+                <tr><th>Reason</th><th>Type</th><th>Count</th></tr>
+              </thead>
+              <tbody id="reasons-body">
+                <tr><td colspan="3">Loading…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Doctor Performance</h2>
+        <div class="panel">
+          <table>
+            <thead>
+              <tr><th>Doctor</th><th>Appointments</th><th>Attendance</th><th>Avg. Satisfaction</th></tr>
+            </thead>
+            <tbody id="doctor-body">
+              <tr><td colspan="4">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

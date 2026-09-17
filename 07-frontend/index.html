@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Care to Cure — Patient Journey</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">Care to Cure</div>
+      <div class="brand-sub">Patient Retention System</div>
+      <nav>
+        <a href="index.html" class="active">Patient Journey</a>
+        <a href="dashboard.html">Management Dashboard</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="page-header">
+        <h1>Patient Journey</h1>
+        <p>Search for a patient to see their full history — appointments, consultations, procedures, follow-ups, and feedback — in one place.</p>
+      </div>
+
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search by name, patient ID, or contact number">
+        <button id="searchBtn">Search</button>
+      </div>
+
+      <div class="result-list" id="resultList"></div>
+
+      <div class="panel" id="journeyPanel">
+        <div class="empty-state">Search for a patient above to view their journey.</div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/patient.js"></script>
+</body>
+</html>
