@@ -71,6 +71,10 @@
                   <option>App</option>
                 </select>
               </div>
+              <div class="full-width">
+                <label>Prior Health History (conditions, allergies, medications)</label>
+                <textarea id="p_history" rows="3" placeholder="e.g. Hypertension, penicillin allergy, currently on Metformin"></textarea>
+              </div>
             </div>
             <div class="form-actions">
               <button type="submit" class="btn">Save Patient</button>
@@ -103,12 +107,14 @@
                 <select id="a_patient" required></select>
               </div>
               <div>
-                <label>Doctor</label>
-                <select id="a_doctor" required></select>
+                <label>Department (where patient wants to visit)</label>
+                <select id="a_department" required></select>
               </div>
               <div>
-                <label>Department</label>
-                <select id="a_department" required></select>
+                <label>Doctor</label>
+                <select id="a_doctor" required>
+                  <option value="">Select department first</option>
+                </select>
               </div>
               <div>
                 <label>Date</label>
@@ -142,6 +148,16 @@
                   <option>No-show</option>
                   <option>Completed</option>
                 </select>
+              </div>
+              <div class="full-width">
+                <label>Doctor Availability</label>
+                <div id="availabilityDisplay" style="font-size: 0.82rem; color: var(--ink-soft); padding: 8px 10px; border: 1px solid var(--line); background: var(--paper);">
+                  Select a doctor to see their schedule.
+                </div>
+              </div>
+              <div class="full-width">
+                <label>Upload Previous Prescription (PDF, JPG, or PNG — optional)</label>
+                <input type="file" id="a_prescription" accept=".pdf,.jpg,.jpeg,.png">
               </div>
             </div>
             <div class="form-actions">

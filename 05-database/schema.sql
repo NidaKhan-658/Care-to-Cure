@@ -38,7 +38,8 @@ CREATE TABLE patients (
     gender           TEXT,
     contact_info     TEXT,
     preferred_communication_method TEXT CHECK (preferred_communication_method IN ('SMS','Email','Call','App')),
-    registration_date DATE NOT NULL DEFAULT (DATE('now'))
+    registration_date DATE NOT NULL DEFAULT (DATE('now')),
+    medical_history  TEXT   -- prior conditions, allergies, ongoing medications, etc.
 );
 
 -- -----------------------------------------------------------------
@@ -240,3 +241,35 @@ CREATE INDEX idx_procedures_patient ON procedures(patient_id);
 CREATE INDEX idx_procedures_status ON procedures(status);
 CREATE INDEX idx_followups_patient ON follow_ups(patient_id);
 CREATE INDEX idx_followups_status ON follow_ups(status);
+
+-- -----------------------------------------------------------------
+-- DOCTOR AVAILABILITY (weekly recurring schedule)
+-- -----------------------------------------------------------------
+CREATE TABLE doctor_availability (
+    availability_id  INTEGER PRIMARY KEY AUTOINCREMENT,
+    doctor_id        INTEGER NOT NULL,
+    day_of_week      TEXT NOT NULL CHECK (
+                        day_of_week IN ('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday')
+                     ),
+    start_time       TIME NOT NULL,
+    end_time         TIME NOT NULL,
+    FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id)
+);
+
+-- -----------------------------------------------------------------
+-- PRESCRIPTIONS (uploaded prior prescription files)
+-- -----------------------------------------------------------------
+CREATE TABLE prescriptions (
+    prescription_id  INTEGER PRIMARY KEY AUTOINCREMENT,
+    patient_id       INTEGER NOT NULL,
+    appointment_id   INTEGER,
+    original_filename TEXT NOT NULL,
+    stored_filename  TEXT NOT NULL,
+    notes            TEXT,
+    uploaded_date    DATETIME NOT NULL DEFAULT (DATETIME('now')),
+    FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
+    FOREIGN KEY (appointment_id) REFERENCES appointments(appointment_id)
+);
+
+CREATE INDEX idx_availability_doctor ON doctor_availability(doctor_id);
+CREATE INDEX idx_prescriptions_patient ON prescriptions(patient_id);

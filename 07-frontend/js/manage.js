@@ -79,6 +79,7 @@ patientForm.addEventListener('submit', async (e) => {
     gender: document.getElementById('p_gender').value || null,
     contact_info: document.getElementById('p_contact').value || null,
     preferred_communication_method: document.getElementById('p_comm').value || null,
+    medical_history: document.getElementById('p_history').value || null,
   };
 
   try {
@@ -103,6 +104,7 @@ async function editPatient(id) {
   document.getElementById('p_gender').value = p.gender || '';
   document.getElementById('p_contact').value = p.contact_info || '';
   document.getElementById('p_comm').value = p.preferred_communication_method || '';
+  document.getElementById('p_history').value = p.medical_history || '';
   document.getElementById('patientFormTitle').textContent = `Edit Patient #${id}`;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -142,17 +144,57 @@ async function loadPatientDropdown() {
   select.innerHTML = patientsCache.map(p => `<option value="${p.patient_id}">${p.name} (#${p.patient_id})</option>`).join('');
 }
 
+// Doctors are cached only — the actual dropdown is populated once a
+// department is chosen (see the change listener below), so the list
+// stays filtered to doctors in that department.
 async function loadDoctorDropdown() {
   doctorsCache = await apiGet('/doctors');
-  const select = document.getElementById('a_doctor');
-  select.innerHTML = doctorsCache.map(d => `<option value="${d.doctor_id}">${d.name}</option>`).join('');
 }
 
 async function loadDepartmentDropdown() {
   departmentsCache = await apiGet('/departments');
   const select = document.getElementById('a_department');
-  select.innerHTML = departmentsCache.map(d => `<option value="${d.department_id}">${d.name}</option>`).join('');
+  select.innerHTML = `<option value="">Select department</option>` +
+    departmentsCache.map(d => `<option value="${d.department_id}">${d.name}</option>`).join('');
 }
+
+// Doctor dropdown filters by selected department
+document.getElementById('a_department').addEventListener('change', async (e) => {
+  const deptId = e.target.value;
+  const doctorSelect = document.getElementById('a_doctor');
+
+  if (!deptId) {
+    doctorSelect.innerHTML = `<option value="">Select department first</option>`;
+    document.getElementById('availabilityDisplay').textContent = 'Select a doctor to see their schedule.';
+    return;
+  }
+
+  const filtered = doctorsCache.filter(d => String(d.department_id) === String(deptId));
+  doctorSelect.innerHTML = filtered.length
+    ? filtered.map(d => `<option value="${d.doctor_id}">${d.name}</option>`).join('')
+    : `<option value="">No doctors in this department</option>`;
+
+  document.getElementById('availabilityDisplay').textContent = 'Select a doctor to see their schedule.';
+});
+
+// Show doctor's weekly availability when chosen
+document.getElementById('a_doctor').addEventListener('change', async (e) => {
+  const doctorId = e.target.value;
+  const display = document.getElementById('availabilityDisplay');
+  if (!doctorId) {
+    display.textContent = 'Select a doctor to see their schedule.';
+    return;
+  }
+
+  try {
+    const slots = await apiGet(`/availability/doctor/${doctorId}`);
+    display.innerHTML = slots.length
+      ? slots.map(s => `${s.day_of_week}: ${s.start_time}–${s.end_time}`).join(' &nbsp;|&nbsp; ')
+      : 'No availability schedule on file for this doctor.';
+  } catch (err) {
+    display.textContent = 'Could not load availability.';
+  }
+});
 
 async function loadAppointments() {
   try {
@@ -199,11 +241,25 @@ appointmentForm.addEventListener('submit', async (e) => {
   };
 
   try {
+    let savedAppointment;
     if (id) {
-      await apiPut(`/appointments/${id}`, payload);
+      savedAppointment = await apiPut(`/appointments/${id}`, payload);
     } else {
-      await apiPost('/appointments', payload);
+      savedAppointment = await apiPost('/appointments', payload);
     }
+
+    // If a prescription file was selected, upload it linked to this appointment
+    const fileInput = document.getElementById('a_prescription');
+    if (fileInput.files.length > 0) {
+      const formData = new FormData();
+      formData.append('prescriptionFile', fileInput.files[0]);
+      formData.append('patient_id', payload.patient_id);
+      formData.append('appointment_id', savedAppointment.appointment_id);
+
+      const res = await fetch(`${API_BASE}/prescriptions`, { method: 'POST', body: formData });
+      if (!res.ok) throw new Error('Appointment saved, but the prescription upload failed');
+    }
+
     resetAppointmentForm();
     loadAppointments();
   } catch (err) {
@@ -214,15 +270,33 @@ appointmentForm.addEventListener('submit', async (e) => {
 async function editAppointment(id) {
   const a = await apiGet(`/appointments/${id}`);
   document.getElementById('appointment_id').value = a.appointment_id;
-  document.getElementById('a_patient').value = a.patient_id;
-  document.getElementById('a_doctor').value = a.doctor_id;
   document.getElementById('a_department').value = a.department_id;
+
+  // Re-populate the doctor dropdown for this department before setting the value
+  const filtered = doctorsCache.filter(d => String(d.department_id) === String(a.department_id));
+  document.getElementById('a_doctor').innerHTML = filtered.length
+    ? filtered.map(d => `<option value="${d.doctor_id}">${d.name}</option>`).join('')
+    : `<option value="">No doctors in this department</option>`;
+  document.getElementById('a_doctor').value = a.doctor_id;
+
+  document.getElementById('a_patient').value = a.patient_id;
   document.getElementById('a_date').value = a.appointment_date || '';
   document.getElementById('a_time').value = a.appointment_time || '';
   document.getElementById('a_type').value = a.appointment_type || '';
   document.getElementById('a_channel').value = a.booking_channel || '';
   document.getElementById('a_status').value = a.status || 'Requested';
   document.getElementById('appointmentFormTitle').textContent = `Edit Appointment #${id}`;
+
+  // Load availability for the pre-selected doctor
+  try {
+    const slots = await apiGet(`/availability/doctor/${a.doctor_id}`);
+    document.getElementById('availabilityDisplay').innerHTML = slots.length
+      ? slots.map(s => `${s.day_of_week}: ${s.start_time}–${s.end_time}`).join(' &nbsp;|&nbsp; ')
+      : 'No availability schedule on file for this doctor.';
+  } catch (err) {
+    document.getElementById('availabilityDisplay').textContent = 'Could not load availability.';
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -240,6 +314,8 @@ function resetAppointmentForm() {
   appointmentForm.reset();
   document.getElementById('appointment_id').value = '';
   document.getElementById('appointmentFormTitle').textContent = 'Add New Appointment';
+  document.getElementById('a_doctor').innerHTML = `<option value="">Select department first</option>`;
+  document.getElementById('availabilityDisplay').textContent = 'Select a doctor to see their schedule.';
 }
 
 document.getElementById('appointmentCancelBtn').addEventListener('click', resetAppointmentForm);

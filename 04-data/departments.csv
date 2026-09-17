@@ -1,0 +1,11 @@
+department_id,name,is_emergency
+1,General Medicine,0
+2,Cardiology,0
+3,Orthopedics,0
+4,Pediatrics,0
+5,Dermatology,0
+6,ENT,0
+7,Emergency,1
+8,Obstetrics & Gynecology,0
+9,Neurology,0
+10,Gastroenterology,0

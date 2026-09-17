@@ -5,12 +5,15 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "init-db": "node db/init.js"
+    "init-db": "node db/init.js",
+    "migrate": "node db/migrate.js",
+    "seed-new": "node db/seed-new-data.js"
   },
   "dependencies": {
     "better-sqlite3": "^11.3.0",
     "cors": "^2.8.5",
     "csv-parse": "^5.5.6",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1"
   }
 }

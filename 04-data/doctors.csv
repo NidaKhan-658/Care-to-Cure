@@ -6,3 +6,6 @@ doctor_id,name,department_id,specialty,availability_status
 5,Dr. Grace Tan,5,Dermatology,Available
 6,Dr. Paolo Garcia,6,ENT,Unavailable
 7,Dr. Ramon Dela Cruz,7,Emergency Medicine,Available
+8,Dr. Christine Aquino,8,Obstetrics & Gynecology,Available
+9,Dr. Rafael Domingo,9,Neurology,Available
+10,Dr. Teresa Lim,10,Gastroenterology,Available
